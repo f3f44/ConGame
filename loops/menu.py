@@ -1,5 +1,6 @@
 ch = 0
 runm = True
+choose = None
 def Start_menu():
     import keyboard as k
     from colorama import init
@@ -12,12 +13,9 @@ def Start_menu():
         global ch
         ch = 1-ch
     def sel():
-        global runm
+        global runm, choose
         runm = False
-        if ch == 1:
-            return True
-        else:
-            return False
+        choose = ch
     
     k.add_hotkey('w', up)
     k.add_hotkey('s', up)
@@ -32,3 +30,5 @@ def Start_menu():
                 print(f' {i}<')
             else:
                 print(f'{i}  ')
+        if choose != None:
+            return choose

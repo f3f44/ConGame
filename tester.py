@@ -1,3 +1,3 @@
 import os
 print('')
-os.system(f'python -i {input()}.py')
+os.system(fr'python -i start.py')
