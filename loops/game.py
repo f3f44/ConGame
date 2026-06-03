@@ -184,7 +184,7 @@ def Start_game(level, mode='player'):
             render += f"\nSelected: {sel}"
             
         print(render)
-        time.sleep(0.03)
+        time.sleep(0.05)
         
     if mode == 'editor':
         k.unhook_all()

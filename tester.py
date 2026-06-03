@@ -1,3 +1,3 @@
 import os
 print('')
-os.system(fr'python -i start.py')
+os.system(fr'python -i .py')
