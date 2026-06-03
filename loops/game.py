@@ -52,7 +52,7 @@ def Start_game(level, mode='player'):
                 self.pos[1] = new_y
                 return
             tar_l0 = str((new_x, new_y, 0))
-            if tar_l0 not in world or world[tar_l0]['beh'] == 'deco':
+            if tar_l0 not in world or world[tar_l0]['beh'] not in ['solid', 'push']:
                 self.pos[0] = new_x
                 self.pos[1] = new_y
                 return
@@ -193,7 +193,7 @@ def Start_game(level, mode='player'):
 
     for i in range(16):
         for j in range(16):
-            if str((j, i, 0)) not in world:
+            if str((j, i, 0)) not in world and str((j, i, 1)) not in world:
                 add_obj((j, i), 'solid', (1, 1))
     pfp = copy.copy(player.pos)
     while min(transition) <= 16:
@@ -205,14 +205,14 @@ def Start_game(level, mode='player'):
                     render += atlas[0]
                 elif str((x, y-transition[x], 0)) in world or str((x, y-transition[x], 1)) in world:
                     target = world.get(str((x, y-transition[x], 0))) or world.get(str((x, y-transition[x], 1)))
-                    if type(target['sprite']) == int:
-                        if target['active']:
+                    if target.get('active', True):
+                        if type(target['sprite'][0]) == int:
                             render += paint_str(target['color'], atlas[target['sprite'][0]])
                         else:
-                            render += paint_str(target['color'], atlas[target['sprite'][1]])
-                    else:
-                        if target['active']:
                             render += paint_str(target['color'], target['sprite'][0])
+                    else:
+                        if type(target['sprite'][1]) == int:
+                            render += paint_str(target['color'], atlas[target['sprite'][1]])
                         else:
                             render += paint_str(target['color'], target['sprite'][1])
                 else:

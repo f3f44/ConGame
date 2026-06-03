@@ -24,7 +24,7 @@ def Start_menu():
     k.add_hotkey('enter', sel)
     
     while runm:
-        print('\033[H')
+        print('\033[H\nConGame\nАльфа версия')
         for j, i in enumerate(var):
             if ch == j:
                 print(f' {i}<')
